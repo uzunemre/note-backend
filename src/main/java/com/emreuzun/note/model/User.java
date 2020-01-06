@@ -16,7 +16,7 @@ import java.util.Collection;
 
 @Data
 @Document(collection = "user")
-public class User implements UserDetails {
+public class User {
 
     private static final long serialVersionUID = 4074374728582967483L;
 
@@ -41,34 +41,4 @@ public class User implements UserDetails {
     private String password;
 
     private String image;
-
-    @Override
-    @Transient
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("Role_USER");
-    }
-
-    @Override
-    @Transient
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    @Transient
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    @Transient
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    @Transient
-    public boolean isEnabled() {
-        return true;
-    }
 }

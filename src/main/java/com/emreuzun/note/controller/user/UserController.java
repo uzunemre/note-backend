@@ -1,7 +1,6 @@
 package com.emreuzun.note.controller.user;
 
 import com.emreuzun.note.model.User;
-import com.emreuzun.note.repository.user.UserRepository;
 import com.emreuzun.note.service.user.UserService;
 import com.emreuzun.note.shared.GenericResponse;
 import com.emreuzun.note.vm.UserVM;
