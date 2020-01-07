@@ -1,10 +1,8 @@
 package com.emreuzun.note.controller.login;
 
-
-import com.emreuzun.note.dto.AuthToken;
-import com.emreuzun.note.model.User;
+import com.emreuzun.note.request.user.UserLoginRequest;
+import com.emreuzun.note.response.user.TokenResponse;
 import com.emreuzun.note.security.TokenProvider;
-import com.emreuzun.note.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @RestController
@@ -25,12 +25,9 @@ public class LoginController {
     @Autowired
     private TokenProvider jwtTokenUtil;
 
-    @Autowired
-    private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<?> register(@RequestBody User user) throws AuthenticationException {
-
+    public ResponseEntity<?> register(@Valid @RequestBody UserLoginRequest user) throws AuthenticationException {
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         user.getUsername(),
@@ -39,7 +36,7 @@ public class LoginController {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateToken(authentication);
-        return ResponseEntity.ok(new AuthToken(token));
+        return ResponseEntity.ok(new TokenResponse(token));
     }
 
 }

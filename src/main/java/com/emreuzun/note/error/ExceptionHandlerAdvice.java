@@ -1,9 +1,8 @@
-package com.emreuzun.note.shared;
+package com.emreuzun.note.error;
 
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import com.emreuzun.note.error.ApiError;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

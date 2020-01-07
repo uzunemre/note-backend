@@ -3,8 +3,6 @@ package com.emreuzun.note.service.user;
 import com.emreuzun.note.error.NotFoundException;
 import com.emreuzun.note.model.User;
 import com.emreuzun.note.repository.user.UserRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -71,12 +72,16 @@ public class TokenProvider implements Serializable {
 
         final Claims claims = claimsJws.getBody();
 
-        final Collection<? extends GrantedAuthority> authorities =
-                Arrays.stream(claims.get(SecurityConstant.AUTHORITIES_KEY).toString().split(","))
-                        .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toList());
-
-        return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
+        String privilege = claims.get(SecurityConstant.AUTHORITIES_KEY).toString();
+        if (privilege.isEmpty()) {
+            return new UsernamePasswordAuthenticationToken(userDetails, "", new ArrayList<>());
+        } else {
+            final Collection<? extends GrantedAuthority> authorities =
+                    Arrays.stream(claims.get(SecurityConstant.AUTHORITIES_KEY).toString().split(","))
+                            .map(SimpleGrantedAuthority::new)
+                            .collect(Collectors.toList());
+            return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
+        }
     }
 
 }

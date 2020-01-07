@@ -2,13 +2,14 @@ package com.emreuzun.note.error;
 
 import java.util.Date;
 import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @JsonInclude(value = Include.NON_NULL)
 public class ApiError {
@@ -29,5 +30,4 @@ public class ApiError {
         this.message = message;
         this.url = url;
     }
-
 }

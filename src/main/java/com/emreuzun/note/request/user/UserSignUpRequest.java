@@ -1,24 +1,15 @@
-package com.emreuzun.note.model;
+package com.emreuzun.note.request.user;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Builder
 @Getter
 @Setter
-@Document(collection = "user")
-public class User {
-
-    private static final long serialVersionUID = 4074374728582967483L;
-
-    @Id
-    private String id;
+public class UserSignUpRequest {
 
     @NotNull()
     @Size(min = 4, max = 255)
@@ -37,5 +28,4 @@ public class User {
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
     private String password;
 
-    private String image;
 }
