@@ -4,8 +4,6 @@ import com.emreuzun.note.factory.UserFactory;
 import com.emreuzun.note.model.User;
 import com.emreuzun.note.request.user.UserSignUpRequest;
 import com.emreuzun.note.service.user.UserService;
-import com.emreuzun.note.response.GenericResponse;
-import com.emreuzun.note.response.user.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +25,4 @@ public class UserController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
-
-    @GetMapping("/users/{username}")
-    UserResponse getUserByName(@PathVariable String username) {
-        User user = userService.getByUsername(username);
-        return new UserResponse(user);
-    }
-
 }

@@ -9,9 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TokenResponse {
 
-    public TokenResponse(String token) {
-        this.token = token;
+    public TokenResponse(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    private String token;
+    private String accessToken;
 }
