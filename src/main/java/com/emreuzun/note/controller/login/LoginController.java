@@ -1,6 +1,6 @@
 package com.emreuzun.note.controller.login;
 
-import com.emreuzun.note.model.User;
+import com.emreuzun.note.model.user.User;
 import com.emreuzun.note.request.user.UserLoginRequest;
 import com.emreuzun.note.response.user.TokenResponse;
 import com.emreuzun.note.response.user.UserResponse;

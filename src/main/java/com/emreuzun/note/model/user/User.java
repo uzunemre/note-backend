@@ -1,4 +1,4 @@
-package com.emreuzun.note.model;
+package com.emreuzun.note.model.user;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -20,7 +20,7 @@ public class User {
     @Id
     private String id;
 
-    @NotNull()
+    @NotNull
     @Size(min = 4, max = 255)
     private String username;
 

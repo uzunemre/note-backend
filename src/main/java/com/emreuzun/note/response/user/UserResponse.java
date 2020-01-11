@@ -1,6 +1,6 @@
 package com.emreuzun.note.response.user;
 
-import com.emreuzun.note.model.User;
+import com.emreuzun.note.model.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

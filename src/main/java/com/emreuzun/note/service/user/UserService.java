@@ -1,11 +1,12 @@
 package com.emreuzun.note.service.user;
 
 import com.emreuzun.note.error.NotFoundException;
-import com.emreuzun.note.model.User;
+import com.emreuzun.note.model.user.User;
 import com.emreuzun.note.repository.user.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -32,6 +33,13 @@ public class UserService {
             throw new NotFoundException(username + " not found");
         }
         return inDB;
+    }
+
+    public void validate(String id) {
+        Optional<User> user = userRepository.findById(id);
+        if (!user.isPresent()) {
+            throw new NotFoundException("user id not found:" + id);
+        }
     }
 
 }

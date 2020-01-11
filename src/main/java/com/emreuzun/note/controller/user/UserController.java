@@ -1,14 +1,13 @@
 package com.emreuzun.note.controller.user;
 
 import com.emreuzun.note.factory.UserFactory;
-import com.emreuzun.note.model.User;
+import com.emreuzun.note.model.user.User;
 import com.emreuzun.note.request.user.UserSignUpRequest;
 import com.emreuzun.note.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import javax.validation.Valid;
 import java.net.URI;
 

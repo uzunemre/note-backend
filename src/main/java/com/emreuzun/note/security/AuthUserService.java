@@ -1,7 +1,7 @@
 package com.emreuzun.note.security;
 
 import com.emreuzun.note.error.NotFoundException;
-import com.emreuzun.note.model.User;
+import com.emreuzun.note.model.user.User;
 import com.emreuzun.note.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,6 +1,6 @@
 package com.emreuzun.note.factory;
 
-import com.emreuzun.note.model.User;
+import com.emreuzun.note.model.user.User;
 import com.emreuzun.note.request.user.UserSignUpRequest;
 
 public class UserFactory {
