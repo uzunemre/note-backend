@@ -14,4 +14,7 @@ public class NewNoteRequest {
     @NotNull
     private String note;
 
+    @NotNull
+    private String title;
+
 }

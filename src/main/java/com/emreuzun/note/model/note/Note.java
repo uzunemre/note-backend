@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Getter
 @Setter
-@Document(collection = "user")
+@Document(collection = "note")
 public class Note {
 
     @Id
@@ -18,6 +18,9 @@ public class Note {
 
     @NotNull
     private String userId;
+
+    @NotNull
+    private String title;
 
     @NotNull
     private String note;

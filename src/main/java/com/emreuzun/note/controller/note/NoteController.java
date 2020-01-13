@@ -6,13 +6,11 @@ import com.emreuzun.note.request.note.NewNoteRequest;
 import com.emreuzun.note.service.note.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/1.0")
@@ -27,5 +25,12 @@ public class NoteController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(note.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
+
+    @GetMapping("/users/{userId}/notes")
+    public ResponseEntity<?> getNotesOfUser(@PathVariable String userId) {
+        List<Note> notes = noteService.findByUserId(userId);
+        return ResponseEntity.ok(notes);
+    }
+
 
 }
