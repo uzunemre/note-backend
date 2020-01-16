@@ -15,7 +15,6 @@ public class AuthUserService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws NotFoundException {
         User user = userService.getByUsername(username);
