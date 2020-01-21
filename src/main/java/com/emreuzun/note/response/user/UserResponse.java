@@ -20,12 +20,15 @@ public class UserResponse {
 
     private String image;
 
-    public UserResponse(User user) {
+    private String token;
+
+    public UserResponse(User user, String token) {
         this.setId(user.getId());
         this.setUsername(user.getUsername());
         this.setName(user.getName());
         this.setSurname(user.getSurname());
         this.setImage(user.getImage());
+        this.setToken(token);
     }
 
 }

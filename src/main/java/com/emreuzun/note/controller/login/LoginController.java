@@ -2,7 +2,6 @@ package com.emreuzun.note.controller.login;
 
 import com.emreuzun.note.model.user.User;
 import com.emreuzun.note.request.user.UserLoginRequest;
-import com.emreuzun.note.response.user.TokenResponse;
 import com.emreuzun.note.response.user.UserResponse;
 import com.emreuzun.note.security.TokenProvider;
 import com.emreuzun.note.service.user.UserService;
@@ -12,9 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
@@ -43,16 +40,8 @@ public class LoginController {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateToken(authentication);
-        return ResponseEntity.ok(new TokenResponse(token));
+        final User user = userService.getByUsername(request.getUsername());
+        return ResponseEntity.ok(new UserResponse(user, token));
     }
-
-    @RequestMapping(value = "/me", method = RequestMethod.GET)
-    public ResponseEntity<?> login(@AuthenticationPrincipal UserDetails userDetail) throws AuthenticationException {
-        final User user = userService.getByUsername(userDetail.getUsername());
-        return ResponseEntity.ok(new UserResponse(user));
-    }
-
-
-
 
 }
