@@ -41,12 +41,17 @@ public class NoteService {
         return note;
     }
 
+    public void delete(String id) {
+        Note note = get(id);
+        noteRepository.delete(note);
+    }
+
     public List<Note> findByUserId(String userId) {
         userService.validate(userId);
         return noteRepository.findByUserId(userId);
     }
 
-    public Note findLastModifiedByUserId(String userId){
+    public Note findLastModifiedByUserId(String userId) {
         Optional<Note> note = noteRepository.findFirstByUserIdOrderByModifiedDateDesc(userId);
         if (note.isPresent()) {
             return note.get();

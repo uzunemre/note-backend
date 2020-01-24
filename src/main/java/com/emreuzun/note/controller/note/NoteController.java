@@ -8,9 +8,7 @@ import com.emreuzun.note.service.note.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -23,14 +21,19 @@ public class NoteController {
     @PostMapping("/notes")
     public ResponseEntity<?> createNote(@Valid @RequestBody NewNoteRequest request) {
         Note note = noteService.save(NoteFactory.createNote(request));
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(note.getId()).toUri();
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.ok(note);
     }
 
     @PutMapping("/notes/{id}")
     public ResponseEntity<?> updateNote(@PathVariable String id, @Valid @RequestBody UpdateNoteRequest request) {
         noteService.update(id, request.getNote());
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/notes/{id}")
+    public ResponseEntity<?> deleteNote(@PathVariable String id) {
+        noteService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/users/{userId}/notes")
